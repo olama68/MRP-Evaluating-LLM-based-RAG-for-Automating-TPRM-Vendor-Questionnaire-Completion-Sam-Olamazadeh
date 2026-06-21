@@ -1,0 +1,14 @@
+,0
+corpus_examples,5672.0
+corpus_train,5104.0
+corpus_validation,568.0
+corpus_unique_questions,3785.0
+corpus_median_q_words,14.0
+corpus_median_a_words,116.0
+vocabulary_terms,17788.0
+test_questions,75.0
+test_in_scope_tprm,20.0
+test_out_of_scope,55.0
+leakage_exact,70.0
+leakage_near_dup,75.0
+leakage_answer_reused,1.0

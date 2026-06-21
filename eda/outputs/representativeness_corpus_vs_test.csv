@@ -1,0 +1,21 @@
+,Corpus %,Test %
+"SI , System and Information Integrity",12.6,29.9
+"AC , Access Control",11.7,4.5
+"SC , System and Communications Protection",10.3,1.5
+"RA , Risk Assessment",8.2,32.8
+"SA , System and Services Acquisition",6.5,3.0
+"SR , Supply Chain Risk Management",6.5,1.5
+"CM , Configuration Management",5.8,1.5
+"AU , Audit and Accountability",5.4,3.0
+"IA , Identification and Authentication",5.4,10.4
+"PE , Physical and Environmental Protection",4.2,3.0
+"IR , Incident Response",3.6,1.5
+"CP , Contingency Planning",3.6,0.0
+"CA , Assessment, Authorization, and Monitoring",2.9,3.0
+"MP , Media Protection",2.4,1.5
+"MA , Maintenance",2.4,0.0
+"PS , Personnel Security",2.0,0.0
+"PM , Program Management",2.0,0.0
+"PL , Planning",1.7,1.5
+"AT , Awareness and Training",1.6,1.5
+"PT , PII Processing and Transparency",1.0,0.0

@@ -1,0 +1,5 @@
+,Min.,1st Qu.,Median,Mean,3rd Qu.,Max.
+Corpus question,3.0,10.0,14.0,14.7,19.0,41.0
+Corpus answer,12.0,77.0,116.0,208.9,395.0,1094.0
+Test question,9.0,14.0,15.0,16.4,19.0,26.0
+Test ground truth,17.0,51.5,94.0,99.8,139.5,214.0

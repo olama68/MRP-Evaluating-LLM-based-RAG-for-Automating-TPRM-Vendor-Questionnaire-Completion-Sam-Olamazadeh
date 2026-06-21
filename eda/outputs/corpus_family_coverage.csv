@@ -1,0 +1,21 @@
+family,name,examples
+SI,System and Information Integrity,429
+AC,Access Control,398
+SC,System and Communications Protection,349
+RA,Risk Assessment,280
+SA,System and Services Acquisition,221
+SR,Supply Chain Risk Management,221
+CM,Configuration Management,198
+AU,Audit and Accountability,184
+IA,Identification and Authentication,183
+PE,Physical and Environmental Protection,143
+IR,Incident Response,124
+CP,Contingency Planning,121
+CA,"Assessment, Authorization, and Monitoring",100
+MP,Media Protection,82
+MA,Maintenance,82
+PS,Personnel Security,69
+PM,Program Management,67
+PL,Planning,59
+AT,Awareness and Training,54
+PT,PII Processing and Transparency,35
