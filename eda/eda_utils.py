@@ -1,17 +1,12 @@
 from __future__ import annotations
-
 import json
 import re
 from pathlib import Path
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-# ---------------------------------------------------------------------------
 # Reference tables
-# ---------------------------------------------------------------------------
-
 # NIST SP 800-171 Rev 3 numbers each requirement as ``03.<family>.<item>``
 # (e.g. 03.11.01). The middle group maps to a control family; the same families
 # are labelled with the two-letter codes used by NIST SP 800-53.
@@ -104,21 +99,15 @@ TPRM_KEYWORDS = {
         "event log", "audit record",
     ],
 }
-
 # Pre-compiled identifier patterns.
 _RE_DOTTED = re.compile(r"\b0?3\.(\d{2})\.\d{2}\b")            # 800-171 Rev 3
 _RE_HYPHEN = re.compile(r"\b([A-Z]{2})-\d{1,2}(?:\(\d+\))?\b")  # 800-53 style
 
-
-# ---------------------------------------------------------------------------
 # Data loading
-# ---------------------------------------------------------------------------
-
 def _read_jsonl(path: Path) -> list[dict]:
     """Read a JSON-lines file into a list of records."""
     with open(path, "r", encoding="utf-8") as handle:
         return [json.loads(line) for line in handle if line.strip()]
-
 
 def _split_messages(messages: list[dict]) -> tuple[str, str, str]:
     """Return (system, user, assistant) text from a chat-format record."""
@@ -126,7 +115,6 @@ def _split_messages(messages: list[dict]) -> tuple[str, str, str]:
     for message in messages:
         parts[message.get("role", "")] = message.get("content", "")
     return parts["system"], parts["user"], parts["assistant"]
-
 
 def load_corpus(data_dir: Path) -> pd.DataFrame:
     """Load the chat-format corpus into a flat data frame.
@@ -144,7 +132,6 @@ def load_corpus(data_dir: Path) -> pd.DataFrame:
         frames.append(frame)
     return pd.concat(frames, ignore_index=True)
 
-
 def load_test_set(csv_path: Path) -> pd.DataFrame:
     """Load the evaluation test set (question, ground_truth, difficulty)."""
     frame = pd.read_csv(csv_path)
@@ -153,15 +140,10 @@ def load_test_set(csv_path: Path) -> pd.DataFrame:
     )
     return frame
 
-
-# ---------------------------------------------------------------------------
 # Text characterisation
-# ---------------------------------------------------------------------------
-
 def word_count(text: str) -> int:
     """Whitespace-delimited word count."""
     return len(str(text).split())
-
 
 def detect_frameworks(text: str) -> list[str]:
     """Return the compliance frameworks referenced in a text."""
@@ -169,14 +151,8 @@ def detect_frameworks(text: str) -> list[str]:
     return [name for name, pattern in FRAMEWORK_PATTERNS.items()
             if re.search(pattern, text, re.IGNORECASE)]
 
-
 def extract_families(text: str) -> list[str]:
-    """Return NIST control-family codes referenced in a text.
-
-    Recognises both 800-171 Rev 3 dotted identifiers (e.g. ``03.11.01``) and
-    800-53 style identifiers (e.g. ``AC-2``). Order of first appearance is kept
-    and duplicates are removed.
-    """
+    """Return the NIST SP 800-53 family codes referenced in a text."""
     text = str(text)
     families: list[str] = []
     for group in _RE_DOTTED.findall(text):
@@ -190,17 +166,8 @@ def extract_families(text: str) -> list[str]:
     seen: set[str] = set()
     return [f for f in families if not (f in seen or seen.add(f))]
 
-
 def tprm_categories(text: str) -> list[str]:
-    """Return every TPRM category a text maps to (multi-label).
-
-    Control identifiers are the primary signal: a text maps to a category when
-    it references that family's control identifier. Keyword matching is used
-    only as a fallback when the text contains *no* control identifier at all —
-    a text that references other families (for example Risk Assessment or System
-    and Information Integrity) is treated as out of scope rather than guessed
-    from keywords.
-    """
+    """Return the TPRM categories relevant to a text, or an empty list."""
     families = set(extract_families(text))
     labels = [name for code, name in TPRM_CATEGORIES.items() if code in families]
     if labels:
@@ -215,14 +182,7 @@ def tprm_categories(text: str) -> list[str]:
 
 
 def primary_tprm_category(text: str) -> str:
-    """Return a single TPRM category for a text, or ``"Other"``.
-
-    When a text maps to several target families, the one referenced most often
-    is chosen; ties fall back to the methodology order (Access Control, Incident
-    Response, Configuration Management, Audit). A text that references only
-    non-target families is labelled ``"Other"``; keyword fallback applies only
-    when no control identifier is present.
-    """
+    """Return a single TPRM category for a text, or ``"Other"``"""
     counts = extract_families_with_counts(text)
     ranked = [
         (code, counts[code])
@@ -251,14 +211,8 @@ def extract_families_with_counts(text: str) -> dict[str, int]:
             counts[code] = counts.get(code, 0) + 1
     return counts
 
-
-# ---------------------------------------------------------------------------
 # Plotting helpers
-# ---------------------------------------------------------------------------
-
 PALETTE = "muted"
-
-
 def set_style() -> None:
     """Apply a consistent, print-friendly figure style."""
     sns.set_theme(style="whitegrid", palette=PALETTE)
