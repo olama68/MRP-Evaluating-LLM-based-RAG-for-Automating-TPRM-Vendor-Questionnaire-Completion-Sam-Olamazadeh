@@ -1,12 +1,12 @@
-# Exploratory Data Analysis — RAG for TPRM Vendor Questionnaire Completion
+# Exploratory Data Analysis: RAG for TPRM Vendor Questionnaire Completion
 
 Exploratory data analysis for the MRP *Evaluating LLM-based RAG for Automating TPRM
 Vendor Questionnaire Completion*. The analysis characterises two inputs to the
 evaluation:
 
-1. **Knowledge corpus** — the CMMC 2.0 / NIST SP 800-171 compliance QA corpus
-   (5,672 question–answer examples), used as the retrieval knowledge base.
-2. **Test set** — 75 TPRM-relevant evaluation questions with ground-truth answers,
+1. **Knowledge corpus**: the CMMC 2.0 / NIST SP 800-171 compliance QA corpus
+   (5,672 question-answer examples), used as the retrieval knowledge base.
+2. **Test set**: 75 TPRM-relevant evaluation questions with ground-truth answers,
    balanced across three difficulty levels.
 
 ## Contents

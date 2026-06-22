@@ -1,0 +1,6 @@
+,answers,share_%
+Truncated answer (no end punctuation),2934,51.7
+Contains non-ASCII characters,3766,66.4
+Very short answer (< 20 words),23,0.4
+Residual HTML entity (&amp; etc.),41,0.7
+OCR artifact (GLYPH...),12,0.2

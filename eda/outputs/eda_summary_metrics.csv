@@ -12,3 +12,4 @@ test_out_of_scope,55.0
 leakage_exact,70.0
 leakage_near_dup,75.0
 leakage_answer_reused,1.0
+corpus_truncated_answers,2934.0

@@ -211,6 +211,57 @@ def extract_families_with_counts(text: str) -> dict[str, int]:
             counts[code] = counts.get(code, 0) + 1
     return counts
 
+# Question-intent taxonomy: what each question asks the model to do. Rules are
+# checked in order and the first match wins, so the most specific patterns come
+# first. The categories mirror the question templates in the corpus and the item
+# types found in a vendor questionnaire.
+QUESTION_INTENTS = [
+    "Vulnerability (CVE)",
+    "Assessment objectives",
+    "Requirements",
+    "Compliance implications",
+    "Control summary / definition",
+    "Document / standard overview",
+    "Implementation / how-to",
+    "Other",
+]
+
+_RE_CONTROL = re.compile(r"\b0?3\.\d{2}\.\d{2}\b|\b[A-Z]{2}-\d{1,2}\b")
+
+
+def classify_question_intent(text: str) -> str:
+    """Classify a question by what it asks for.
+
+    Returns one of ``QUESTION_INTENTS``. Rules run from most to least specific
+    and the first match wins.
+    """
+    t = str(text)
+    tl = t.lower()
+    if "cve-" in tl:
+        return "Vulnerability (CVE)"
+    if "assessment objective" in tl:
+        return "Assessment objectives"
+    if "requirement" in tl:
+        return "Requirements"
+    if "compliance implication" in tl:
+        return "Compliance implications"
+    if _RE_CONTROL.search(t) and any(
+        w in tl for w in ("summariz", "what is", "what are", "describe",
+                          "define", "provisions of")):
+        return "Control summary / definition"
+    if (("what does" in tl and "say about" in tl)
+            or "guidance provided in" in tl
+            or tl.startswith("summarize")
+            or "summariz" in tl
+            or any(w in tl for w in ("annual report", "workshop", "publication",
+                                     "summary report", "key provisions"))):
+        return "Document / standard overview"
+    if (tl.startswith("how ") or "how do" in tl or "how should" in tl
+            or "how to" in tl or "implement" in tl):
+        return "Implementation / how-to"
+    return "Other"
+
+
 # Plotting helpers
 PALETTE = "muted"
 def set_style() -> None:
