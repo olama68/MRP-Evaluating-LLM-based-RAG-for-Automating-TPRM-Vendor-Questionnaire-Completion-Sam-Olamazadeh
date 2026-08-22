@@ -1,0 +1,7 @@
+,rag,baseline
+rouge_l,0.262,0.146
+bertscore,0.848,0.814
+faithfulness,0.758,0.135
+hallucination_rate,0.0,0.97
+citation_named,0.956,
+citation_supported,0.933,

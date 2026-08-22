@@ -1,0 +1,6 @@
+# Disable Streamlit's source file watcher. It walks every transformers
+# submodule on startup, and the optional vision ones need torchvision
+# (unused here), which floods the console with import errors. The app
+# does not need hot reload, so turning the watcher off keeps it quiet.
+[server]
+fileWatcherType = "none"

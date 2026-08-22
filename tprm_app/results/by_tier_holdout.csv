@@ -1,0 +1,4 @@
+difficulty,rag_rouge_l,baseline_rouge_l,rag_bertscore,baseline_bertscore,rag_hallucinated,cite_named,cite_supported
+easy,0.16,0.143,0.836,0.812,0.0,0.667,0.667
+hard,0.498,0.134,0.873,0.805,0.0,1.0,1.0
+medium,0.148,0.093,0.847,0.812,0.0,0.667,0.667

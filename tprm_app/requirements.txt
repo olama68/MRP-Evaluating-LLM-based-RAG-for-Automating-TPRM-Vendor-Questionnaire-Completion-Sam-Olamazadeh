@@ -1,0 +1,10 @@
+streamlit
+anthropic
+azure-identity
+pymupdf
+faiss-cpu
+sentence-transformers
+rouge-score
+bert-score
+pandas
+python-dotenv
