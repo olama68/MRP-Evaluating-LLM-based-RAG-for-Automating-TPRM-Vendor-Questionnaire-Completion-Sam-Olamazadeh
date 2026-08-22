@@ -192,10 +192,12 @@ jupyter nbconvert --to notebook --execute eda/2026-06-21-mrp-eda.ipynb \
     --output eda/2026-06-21-mrp-eda.ipynb
 ```
 
-## Data and licence
+## Data and rights
 
 The corpus is the CMMC 2.0 / NIST SP 800-171 Compliance QA Corpus, published by
 Memoriant, Inc. under CC BY 4.0. The compiled PDFs in
 `tprm_app/documents_from_the_business/` are derived from it. See `NOTICE.md`.
 
-Code is MIT licensed. See `LICENSE`.
+The code is copyright (c) 2026 Sam Olamazadeh, all rights reserved. It is
+published so that the reported experiment can be examined and reproduced; no
+licence to reuse it is granted.
