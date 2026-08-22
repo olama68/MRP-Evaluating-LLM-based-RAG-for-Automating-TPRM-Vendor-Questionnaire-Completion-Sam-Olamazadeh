@@ -1,0 +1,7 @@
+# The EDA notebook is a large generated artifact and dominates the byte count,
+# which makes the repository language summary read as Jupyter Notebook rather
+# than Python. Count it as documentation instead.
+*.ipynb linguist-documentation
+
+# Compiled corpus and questionnaire PDFs are generated output, not source.
+tprm_app/documents_from_the_business/** linguist-generated

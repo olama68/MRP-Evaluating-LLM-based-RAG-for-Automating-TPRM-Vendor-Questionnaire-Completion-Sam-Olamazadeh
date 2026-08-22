@@ -24,4 +24,7 @@ are not subject to copyright protection in the United States.
 
 ## Code
 
-The code in this repository is covered by `LICENSE`, not by CC BY 4.0.
+The code in this repository is covered by `LICENSE` (MIT), not by CC BY 4.0.
+The MIT licence covers the code only. The data files in `dataset/` and
+`tprm_app/documents_from_the_business/` are not covered by it; they carry the
+CC BY 4.0 terms set out above.
