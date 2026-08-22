@@ -1,4 +1,4 @@
-# MRP — Evaluating LLM-based RAG for Automating TPRM Vendor Questionnaire Completion
+# MRP Evaluating LLM-based RAG for Automating TPRM Vendor Questionnaire Completion
 
 **Author:** Sam Olamazadeh
 
