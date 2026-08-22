@@ -19,8 +19,10 @@ retrieval keeps it grounded in the uploaded files.
 - `dataset/test_questions.csv` - 75 evaluation questions (question, ground_truth, difficulty).
 - `documents_from_the_business/` - the 22 compiled compliance PDFs (build_corpus.py output).
 - `docs/` - sample questionnaires (TPRM vendor, SOX ITGC).
-- `results/` - evaluation output, per question and summarised. See `results/README.md`
-  for the file list and for which questions each summary covers.
+- `results/` - evaluation output. `eval_*.csv` hold one row per question, `summary_*.csv`
+  and `by_tier_*.csv` the means. The summaries average over every item in the split,
+  refusals included; the top-level README explains how that relates to the figures
+  reported in Section 4.
 - `.env.example` - the two environment variables the app needs. Copy it to `.env`
   and fill in your own values.
 - `.streamlit/config.toml` - turns off Streamlit's file watcher so the app starts
